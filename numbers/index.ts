@@ -32,7 +32,7 @@ function formatNumber(input: UINumber): string {
         style: "currency",
         currency: input.currency,
         ...options,
-      }).format(value);
+      }).format(value + (input.gst ?? 0));
 
     default:
       throw new Error("Unsupported format");
