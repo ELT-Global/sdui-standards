@@ -13,6 +13,13 @@ type UIAmount = UIBaseNumber & {
     currency: string;  // ISO 4217 currency string (eg. USD) or the symbol (eg. $)
     gst?: number;
 } // eg. $2,000
+type UIDuration = UIBaseNumber & {
+   format: "duration";
+   compact?: boolean; // if true, use "1h 2m" style; if false, "1 hour 2 minutes" [Default false]
+   largestUnit?: "days" | "hours" | "minutes" | "seconds"; // restirct output's largest unit
+   maxParts?: number; // max parts to show, e.g. 2 -> "1h 5m", not "1h 5m 30s" [Default 2]
+   suffix?: string; // optional string to append (e.g "ago", "left")
+} // eg. 1h 5m
 
-type UINumber = UIPlainNumber | UIPercentage | UIOrdinal | UIAmount;
+type UINumber = UIPlainNumber | UIPercentage | UIOrdinal | UIAmount | UIDuration;
 ```
