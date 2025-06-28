@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'dart:math';
 
 abstract class UINumber {
   final double value;
@@ -44,6 +45,20 @@ class UIDuration extends UINumber {
   }) : super(value, locale);
 }
 
+class UIFileSize extends UINumber {
+  final bool binary;
+  final String? unit; // B, KB, MB, ... or KiB, MiB, ...
+  final String? suffix;
+
+  UIFileSize(
+    double value,
+    String locale, {
+    this.binary = false,
+    this.unit,
+    this.suffix,
+    int? rounding,
+  }) : super(value, locale, rounding);
+}
 
 String formatNumber(UINumber input) {
   final value = input.value;
@@ -116,6 +131,40 @@ String formatNumber(UINumber input) {
     return parts.join(input.compact ? ' ' : ', ') +
         (input.suffix != null ? ' ${input.suffix}' : '');
   }
+
+    if (input is UIFileSize) {
+    final binary = input.binary;
+    final unit = input.unit;
+    final suffix = input.suffix ?? '';
+    final base = binary ? 1024 : 1000;
+    final roundingDigits = input.rounding ?? 2;
+
+    final unitLabels = binary
+        ? ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB']
+        : ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
+
+    double displayValue = input.value;
+    String displayUnit = 'B';
+
+    if (unit != null && unitLabels.contains(unit)) {
+      // Forced unit
+      final index = unitLabels.indexOf(unit);
+      displayValue = input.value / (pow(base, index) as double);
+      displayUnit = unit;
+    } else {
+      // Auto-scale
+      int i = 0;
+      while (displayValue >= base && i < unitLabels.length - 1) {
+        displayValue /= base;
+        i++;
+      }
+      displayUnit = unitLabels[i];
+    }
+
+    final rounded = displayValue.toStringAsFixed(roundingDigits);
+    return '$rounded $displayUnit${suffix.isNotEmpty ? ' $suffix' : ''}';
+  }
+
 
 
   throw ArgumentError('Unsupported format');
