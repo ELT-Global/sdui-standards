@@ -68,11 +68,47 @@ function formatNumber(input: UINumber): string {
       }
 
       if (parts.length === 0) {
-        // fallback if everything rounded to zero
         parts.push(compact ? `0s` : `0 seconds`);
       }
 
       return parts.join(compact ? " " : ", ") + (suffix ? ` ${suffix}` : "");
+    }
+
+    case "filesize": {
+      const { binary = false, unit, suffix = "" } = input;
+
+      const base = binary ? 1024 : 1000;
+      const unitLabels = binary
+        ? ["B", "KiB", "MiB", "GiB", "TiB", "PiB"]
+        : ["B", "KB", "MB", "GB", "TB", "PB"];
+
+      let displayValue = value;
+      let displayUnit = "B";
+
+      if (unit) {
+        // Force output in the specified unit
+        const index = unitLabels.indexOf(unit);
+        if (index >= 0) {
+          displayValue = value / Math.pow(base, index);
+          displayUnit = unit;
+        } else {
+          throw new Error(`Unsupported unit: ${unit}`);
+        }
+      } else {
+        // Auto-scale
+        let i = 0;
+        while (displayValue >= base && i < unitLabels.length - 1) {
+          displayValue /= base;
+          i++;
+        }
+        displayUnit = unitLabels[i];
+      }
+
+      const roundedValue = typeof rounding === "number"
+        ? displayValue.toFixed(rounding)
+        : displayValue.toFixed(2);
+
+      return `${roundedValue} ${displayUnit}${suffix ? ` ${suffix}` : ""}`;
     }
 
     default:
