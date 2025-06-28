@@ -20,6 +20,12 @@ type UIDuration = UIBaseNumber & {
    maxParts?: number; // max parts to show, e.g. 2 -> "1h 5m", not "1h 5m 30s" [Default 2]
    suffix?: string; // optional string to append (e.g "ago", "left")
 } // eg. 1h 5m
+type UIFileSize = UIBaseNumber & {
+   format: "filesize";
+   binary?: boolean;
+   unit?: "B" | "KB" | "MB" | "GB" | "TB" | "PB" | "KiB" | "MiB" | "GiB" | "TiB" | "PiB";
+   suffix?: string;
+};
 
-type UINumber = UIPlainNumber | UIPercentage | UIOrdinal | UIAmount | UIDuration;
+type UINumber = UIPlainNumber | UIPercentage | UIOrdinal | UIAmount | UIDuration | UIFileSize;
 ```
