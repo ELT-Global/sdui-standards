@@ -25,7 +25,7 @@ type UIFileSize = UIBaseNumber & {
    binary?: boolean;
    unit?: "B" | "KB" | "MB" | "GB" | "TB" | "PB" | "KiB" | "MiB" | "GiB" | "TiB" | "PiB";
    suffix?: string;
-};
+}; // eg. 5.00 GB
 
 type UINumber = UIPlainNumber | UIPercentage | UIOrdinal | UIAmount | UIDuration | UIFileSize;
 ```
