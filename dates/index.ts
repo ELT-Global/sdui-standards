@@ -85,6 +85,13 @@ function formatDate(date: UIDate): string {
                 }
             }
         }
+        case 'short':
+            return new Intl.DateTimeFormat(locale, {
+                ...baseOptions,
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+            }).format(dateObj).replace(/[-/]/g, '/');
 
         default:
             return dateObj.toLocaleString(locale, baseOptions);

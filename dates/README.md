@@ -15,6 +15,7 @@ type UIRelativeDate = UIBaseDate & { format: "relative" };        // e.g. "2 day
 type UIWeekday = UIBaseDate & { format: "weekday" };              // e.g. "Monday"
 type UIMonthYear = UIBaseDate & { format: "monthYear" };          // e.g. "May 2025"
 type UIFull = UIBaseDate & { format: "full" };                    // e.g. "Monday, May 19, 2025 at 2:30 PM IST"
+type UIShort = UIBaseDate & { format: "short" };                  // e.g. "07/03/2025"
 
 type UIDate = UIDateOnly | UITimeOnly | UIDateTime | UIRelativeDate | UIWeekday | UIMonthYear | UIFull;
 ```
