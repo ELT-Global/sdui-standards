@@ -4,6 +4,8 @@ function formatNumber(input: UINumber): string {
 
   if (typeof rounding === "number") {
     options.maximumFractionDigits = rounding;
+  } else {
+    options.maximumFractionDigits = 0;
   }
 
   switch (input.format) {
