@@ -12,7 +12,7 @@ function formatNumber(input: UINumber): string {
     case "plain":
       return new Intl.NumberFormat(locale, options).format(value);
 
-    case "percent":
+    case "percentage":
       return new Intl.NumberFormat(locale, {
         style: "percent",
         ...options,
