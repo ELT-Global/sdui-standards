@@ -39,10 +39,10 @@ function formatNumber(input: UINumber): string {
 
     case "duration": {
       const units = [
-        { label: "day", seconds: 86400 },
-        { label: "hour", seconds: 3600 },
-        { label: "minute", seconds: 60 },
-        { label: "second", seconds: 1 },
+        { label: "days", seconds: 86400 },
+        { label: "hours", seconds: 3600 },
+        { label: "minutes", seconds: 60 },
+        { label: "seconds", seconds: 1 },
       ];
 
       const {
