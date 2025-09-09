@@ -12,10 +12,13 @@ type UIDateOnly = UIBaseDate & { format: "date" };                // e.g. "May 1
 type UITimeOnly = UIBaseDate & { format: "time" };                // e.g. "2:30 PM"
 type UIDateTime = UIBaseDate & { format: "datetime" };            // e.g. "May 19, 2025 at 2:30 PM"
 type UIRelativeDate = UIBaseDate & { format: "relative" };        // e.g. "2 days ago", "in 3 hours"
+type UIRelativeDays = UIBaseDate & { format: "relativeDays" };    // e.g. "5" (days left until date, 0 if past)
 type UIWeekday = UIBaseDate & { format: "weekday" };              // e.g. "Monday"
 type UIMonthYear = UIBaseDate & { format: "monthYear" };          // e.g. "May 2025"
+type UIShortMonthYear = UIBaseDate & { format: "shortMonthYear" }; // e.g. "01 Jun '25"
 type UIFull = UIBaseDate & { format: "full" };                    // e.g. "Monday, May 19, 2025 at 2:30 PM IST"
 type UIShort = UIBaseDate & { format: "short" };                  // e.g. "07/03/2025"
 
-type UIDate = UIDateOnly | UITimeOnly | UIDateTime | UIRelativeDate | UIWeekday | UIMonthYear | UIFull;
+export type UIDate = UIDateOnly | UITimeOnly | UIDateTime | UIRelativeDate | UIRelativeDays | UIWeekday | UIMonthYear | UIShortMonthYear | UIFull | UIShort;
+
 ```
