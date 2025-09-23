@@ -1,6 +1,11 @@
+const getTotalValue = (input: UINumber): number => {
+    return input.format === 'currency' ? input.value + (input.gst ?? 0) : input.value;
+};
+
 function formatNumber(input: UINumber): string {
-  const { value, locale, rounding } = input;
+  const { locale, rounding } = input;
   const options: Intl.NumberFormatOptions = {};
+  const value = getTotalValue(input);
   const hasFraction = value % 1 !== 0;
   
   if (typeof rounding === "number") {
@@ -37,7 +42,7 @@ function formatNumber(input: UINumber): string {
         style: "currency",
         currency: input.currency,
         ...options,
-      }).format(value + (input.gst ?? 0));
+      }).format(value);
 
     case "duration": {
       const units = [
