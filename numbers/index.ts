@@ -1,9 +1,11 @@
 function formatNumber(input: UINumber): string {
   const { value, locale, rounding } = input;
   const options: Intl.NumberFormatOptions = {};
-
+  const hasFraction = value % 1 !== 0;
+  
   if (typeof rounding === "number") {
-    options.maximumFractionDigits = rounding;
+    options.maximumFractionDigits = hasFraction ? rounding : 0;
+    options.minimumFractionDigits = hasFraction ? 1 : 0;
   } else {
     options.maximumFractionDigits = 0;
   }
