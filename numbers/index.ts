@@ -121,6 +121,6 @@ function formatNumber(input: UINumber): string {
     }
 
     default:
-      throw new Error("Unsupported format");
+      throw new Error(`Unsupported format: ${input.format}`);
   }
 }
