@@ -66,5 +66,5 @@ class UIToast {
     variant: "success" | "error" | "info";
 }
 
-type UIAction = UIDownloadable | UICopyToClipboard | UIPhoneCall | UIEmail | UINavigate | UIExternalLink | UIShare | UIRequest | UIToast;
+export type UIAction = UIDownloadable | UICopyToClipboard | UIPhoneCall | UIEmail | UINavigate | UIExternalLink | UIShare | UIRequest | UIToast;
 
