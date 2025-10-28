@@ -1,4 +1,4 @@
-```ts
+
 type UIBaseDate = {
     value: string;        // ISO 8601 date string (e.g. "2025-05-19T14:30:00Z")
     locale: string;       // IETF BCP 47 language tag (e.g. "en-US", "fr-FR")
@@ -26,4 +26,4 @@ type UICountdown = UIBaseDate & {
 }; // e.g. countdown in days, hours, minutes, seconds to date
 
 export type UIDate = UIDateOnly | UITimeOnly | UIDateTime | UIRelativeDate | UIRelativeDays | UIWeekday | UIMonthYear | UIShortMonthYear | UIFull | UIShort | UITimer | UICountdown;
-```
+

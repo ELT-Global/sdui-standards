@@ -1,4 +1,4 @@
-```ts
+
 type UIBaseNumber = {
    value: number;
    locale: string;  // IETF BCP 47 language tag, eg. en-US
@@ -28,4 +28,4 @@ type UIFileSize = UIBaseNumber & {
 }; // eg. 5.00 GB
 
 type UINumber = UIPlainNumber | UIPercentage | UIOrdinal | UIAmount | UIDuration | UIFileSize;
-```
+
