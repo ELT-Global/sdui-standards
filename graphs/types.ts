@@ -20,12 +20,12 @@ type NumericAxis = BaseAxis & {
   step?: number;
 };
 
-type UIBarGraph<T extends string = string> = UIBaseGraph & {
+type UIBarGraph = UIBaseGraph & {
   type: "bar";
   xAxis: CategoricalAxis | NumericAxis;
   yAxis: NumericAxis;
   series: Array<{
-    label: T;
+    label: string;
     color?: string;
     data: Array<{
       x: string | number;
@@ -34,12 +34,12 @@ type UIBarGraph<T extends string = string> = UIBaseGraph & {
   }>;
 };
 
-type LineGraph<T extends string = string> = UIBaseGraph & {
+type LineGraph = UIBaseGraph & {
   type: "line";
   xAxis: CategoricalAxis | NumericAxis;
   yAxis: NumericAxis;
   series: Array<{
-    label: T;
+    label: string;
     color?: string;
     data: Array<{
       x: string | number;
@@ -48,16 +48,13 @@ type LineGraph<T extends string = string> = UIBaseGraph & {
   }>;
 };
 
-type PieGraph<T extends string = string> = UIBaseGraph & {
+type PieGraph = UIBaseGraph & {
   type: "pie";
   series: Array<{
-    label: T;
+    label: string;
     color?: string;
     value: number;
   }>;
 };
 
-export type UIGraph<T extends string = string> =
-  | UIBarGraph<T>
-  | LineGraph<T>
-  | PieGraph<T>;
+export type UIGraph = UIBarGraph | LineGraph | PieGraph;
