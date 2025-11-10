@@ -2,6 +2,7 @@ type UIBaseGraph = {
   title: string;
   description?: string;
   type: "bar" | "line" | "pie";
+  defaultPeriod?: string;
 };
 
 type BaseAxis = {
