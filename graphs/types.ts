@@ -30,7 +30,7 @@ type UIBarGraph = UIBaseGraph & {
       yAxis: NumericAxis;
       series: Array<{
         label: string;
-        color?: string;
+        color: string;
         data: Array<{
           x: string | number;
           y: number;
@@ -49,7 +49,7 @@ type LineGraph = UIBaseGraph & {
       yAxis: NumericAxis;
       series: Array<{
         label: string;
-        color?: string;
+        color: string;
         data: Array<{
           x: string | number;
           y: number;
@@ -66,7 +66,7 @@ type PieGraph = UIBaseGraph & {
     {
       series: Array<{
         label: string;
-        color?: string;
+        color: string;
         value: number;
       }>;
     }
