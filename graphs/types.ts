@@ -22,39 +22,54 @@ type NumericAxis = BaseAxis & {
 
 type UIBarGraph = UIBaseGraph & {
   type: "bar";
-  xAxis: CategoricalAxis | NumericAxis;
-  yAxis: NumericAxis;
-  series: Array<{
-    label: string;
-    color?: string;
-    data: Array<{
-      x: string | number;
-      y: number;
-    }>;
-  }>;
+  periods: Record<
+    string,
+    {
+      xAxis: CategoricalAxis | NumericAxis;
+      yAxis: NumericAxis;
+      series: Array<{
+        label: string;
+        color?: string;
+        data: Array<{
+          x: string | number;
+          y: number;
+        }>;
+      }>;
+    }
+  >;
 };
 
 type LineGraph = UIBaseGraph & {
   type: "line";
-  xAxis: CategoricalAxis | NumericAxis;
-  yAxis: NumericAxis;
-  series: Array<{
-    label: string;
-    color?: string;
-    data: Array<{
-      x: string | number;
-      y: number;
-    }>;
-  }>;
+  periods: Record<
+    string,
+    {
+      xAxis: CategoricalAxis | NumericAxis;
+      yAxis: NumericAxis;
+      series: Array<{
+        label: string;
+        color?: string;
+        data: Array<{
+          x: string | number;
+          y: number;
+        }>;
+      }>;
+    }
+  >;
 };
 
 type PieGraph = UIBaseGraph & {
   type: "pie";
-  series: Array<{
-    label: string;
-    color?: string;
-    value: number;
-  }>;
+  periods: Record<
+    string,
+    {
+      series: Array<{
+        label: string;
+        color?: string;
+        value: number;
+      }>;
+    }
+  >;
 };
 
 export type UIGraph = UIBarGraph | LineGraph | PieGraph;
