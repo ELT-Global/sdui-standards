@@ -1,7 +1,7 @@
 ```ts
 type UIBaseTime = {
     type: "time";
-    timestamp: string;    // Unix timestamp string in milliseconds (e.g. "1715761800000")
+    timestamp: number;    // Unix timestamp string in milliseconds (e.g. "1715761800000")
     locale: string;       // IETF BCP 47 language tag (e.g. "en-US", "fr-FR")
     timeZone?: string;    // Optional IANA time zone string (e.g. "Asia/Kolkata", "UTC")
     hour12?: boolean;     // Explicit toggle for 12-hour or 24-hour time display
@@ -21,5 +21,5 @@ type UICountdown = UIBaseTime & {
     lowestUnit?: "days" | "hours" | "minutes" | "seconds";    
 }; // e.g. countdown in days, hours, minutes, seconds to date
 
-export type UIDate = UIPlainTime | UITimeRange | UITimer | UICountdown;
+export type UITime = UIPlainTime | UITimeRange | UITimer | UICountdown;
 ```
