@@ -1,5 +1,6 @@
 ```ts
 type UIBaseDate = {
+    type: "date";
     value: string;        // ISO 8601 date string (e.g. "2025-05-19T14:30:00Z")
     locale: string;       // IETF BCP 47 language tag (e.g. "en-US", "fr-FR")
     timeZone?: string;    // Optional IANA time zone string (e.g. "Asia/Kolkata", "UTC")
@@ -19,11 +20,5 @@ type UIShortMonthYear = UIBaseDate & { format: "shortMonthYear" }; // e.g. "01 J
 type UIFull = UIBaseDate & { format: "full" };                    // e.g. "Monday, May 19, 2025 at 2:30 PM IST"
 type UIShort = UIBaseDate & { format: "short" };                  // e.g. "07/03/2025"
 
-type UITimer = UIBaseDate & { format: "timer", serverTimestamp?: number; }; // e.g. timer from date to now
-type UICountdown = UIBaseDate & { 
-    format: "countdown";
-    lowestUnit?: "days" | "hours" | "minutes" | "seconds";    
-}; // e.g. countdown in days, hours, minutes, seconds to date
-
-export type UIDate = UIDateOnly | UITimeOnly | UIDateTime | UIRelativeDate | UIRelativeDays | UIWeekday | UIMonthYear | UIShortMonthYear | UIFull | UIShort | UITimer | UICountdown;
+export type UIDate = UIDateOnly | UITimeOnly | UIDateTime | UIRelativeDate | UIRelativeDays | UIWeekday | UIMonthYear | UIShortMonthYear | UIFull | UIShort;
 ```

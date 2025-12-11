@@ -1,15 +1,18 @@
 ```ts
 type UIMarkdownText = {
+    type: "text";
     format: "markdown";
     text: string;
 }
 
 type UIPlainText = {
+    type: "text";
     format: "plain";
     text: string;
 }
 
 type UILinkText = {
+    type: "text";
     format: "link";
     text: string;
     url: string;
@@ -17,6 +20,7 @@ type UILinkText = {
 }
 
 type UIBadgeText = {
+    type: "text";
     format: "badge";
     text: string;
     color?: "info" | "success" | "warning" | "error"; // Hex color code or color name
