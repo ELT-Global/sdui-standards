@@ -1,7 +1,6 @@
 export function formatDate(date: UIDate): string {
   const dateObj = new Date(date.value);
   const locale = date.locale || 'en-US';
-  const timeZone = date.timeZone;
 
   const baseOptions: Intl.DateTimeFormatOptions = {
     calendar: date.calendar,
@@ -123,51 +122,6 @@ export function formatDate(date: UIDate): string {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
       }).format(diffInDays);
-    }
-
-    case 'timer': {
-      const now = date.serverTimestamp ? new Date(date.serverTimestamp) : new Date();
-      let diff = now.getTime() - dateObj.getTime();
-      const isPast = diff >= 0;
-      diff = Math.abs(diff);
-
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      diff -= hours * (1000 * 60 * 60);
-      const minutes = Math.floor(diff / (1000 * 60));
-      diff -= minutes * (1000 * 60);
-      const seconds = Math.floor(diff / 1000);
-
-      return `${isPast ? '' : '-'}${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    }
-
-    case 'countdown': {
-        const now = new Date();
-        let diff = dateObj.getTime() - now.getTime();
-        diff = Math.max(0, diff); // No negative countdowns
-    
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        diff -= days * (1000 * 60 * 60 * 24);
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        diff -= hours * (1000 * 60 * 60);
-        const minutes = Math.floor(diff / (1000 * 60));
-        diff -= minutes * (1000 * 60);
-        const seconds = Math.floor(diff / 1000);
-    
-        const parts: string[] = [];
-        if (date.lowestUnit === 'days' || (!date.lowestUnit && days > 0)) {
-            parts.push(days.toString().padStart(2, '0'));
-        }
-        if (date.lowestUnit === 'hours' || (!date.lowestUnit && (parts.length > 0 || hours > 0))) {
-            parts.push(hours.toString().padStart(2, '0'));
-        }
-        if (date.lowestUnit === 'minutes' || (!date.lowestUnit && (parts.length > 0 || minutes > 0))) {
-            parts.push(minutes.toString().padStart(2, '0'));
-        }
-        if (date.lowestUnit === 'seconds' || (!date.lowestUnit && (parts.length > 0 || seconds > 0))) {
-            parts.push(seconds.toString().padStart(2, '0'));
-        }
-    
-        return parts.join(':');
     }
 
     default:
