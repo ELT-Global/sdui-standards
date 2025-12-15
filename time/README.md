@@ -12,6 +12,7 @@ type UIPlainTime = UIBaseTime & { format: "plain" };                // e.g. "2:3
 type UITimeRange = UIBaseTime & { 
     format: "range";
     output: "both" | "start" | "end";
+    endTimestamp: number; // Unix timestamp string in milliseconds for range end
     showDuration?: boolean; // Whether to show duration alongside time range, eg. " (1h 30m)"
     separator?: string; // default is " - "
 }; // e.g. "10:00am - 11:00am"
