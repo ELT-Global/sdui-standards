@@ -26,5 +26,13 @@ type UIBadgeText = {
     color?: "info" | "success" | "warning" | "error"; // Hex color code or color name
 }
 
-type UIText = UIMarkdownText | UIPlainText | UILinkText | UIBadgeText;
+
+
+type UIHtmlText = {
+    type: "text";
+    format: "html";
+    text: string;
+}
+
+type UIText = UIMarkdownText | UIPlainText | UILinkText | UIBadgeText | UIHtmlText;
 ```
